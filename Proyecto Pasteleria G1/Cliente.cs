@@ -1,12 +1,21 @@
 ﻿
+
+// nombre, string
+// apellido, string
+// dni, integer
+// telefono, integer
+// direccion, string	
+
+// agregarCliente()
+
 using System;
 
 namespace Proyecto_Pasteleria_G1
 {
- 	
+	
 	public class Cliente
 	{
-		public string  nombre;
+		public string nombre;
 		public string Nombre {
 			get {
 				return nombre;
@@ -51,8 +60,6 @@ namespace Proyecto_Pasteleria_G1
 			telefono  = paramTelefono;			
 			direccion = paramDireccion;						
 		}
-		
-		
 		
 	}
 }

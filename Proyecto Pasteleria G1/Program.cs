@@ -1,5 +1,4 @@
 ﻿/*
-
 Proyecto 2:
 En una panadería y confitería se tienen almacenados los pedidos de servicios de catering para
 cumpleaños de 15, casamientos, bautismos, etc.. De los pedidos se almacena: el número de pedido
@@ -11,7 +10,7 @@ pedido registrado. De cada servicio ofrecido se almacena nombre del servicio, ti
 servicio), costo individual.
 Se deberá desarrollar una aplicación, utilizando las clases que considere necesarias, que resuelva las
 funcionalidades que se muestran en el siguiente menú:
-a- Agregar un servicio
+a- Agregar un servicio.
 b- Eliminar un servicio.
 c- Tomar un pedido. El cliente puede incluir en su pedido un solo servicio o varios. Si el cliente
 ya existe, solo se registra el pedido. Si es cliente nuevo, debe agregarse a la base de datos de
@@ -34,67 +33,7 @@ Preguntas:
 1- Cerrar bien a que llama servicio o pedido...porque el enunciado parece mezclar los conceptos
 2- Quien no pude tener mas de 2 pedidos...el cliente o la panaderia?
 
-
-//	Esta es la clase principal, la clase Program solo instancia la clase Pasteleria y llama a los procedimiento/funciones
-	La profesora me dijo que lo hagamos asi, las clases primitivas no hacen mucho bussiness, eso lo hace Pasteleria. 
-	
-- 	Clase Pasteleria  
-			listarPedidos()	      	//Lista de Pedidos
-			listarServiciosPedido() //Lista de Servicios del Pedido
-			listaClientes()			//Lista Clientes			
-		
-
--	Clase Servicios
-			tipodeServicio, integer, //[Comida,Bebida,Personal de Atencion,Blanco y Manteleria]
-			descripcion, string
-			costo, float
-			cantidad, integer;						
-			
-			
--	Clase Pedidos
-  			ID, integer, autoincremental
-			dnicliente, integer
-			fechaeEvento, DateTime
-			costoComida, float
-
-			Personal_de_Atencion boolean //Se pregunta si quiere personal.
-			Detalle_de_Personal bool //Si quiere incluir personal, se le lista de 0 a 50 personas una cierta cantidad, de 51 a 100 otra cantidad de personal y asi.
-                             		  Ver de hacer 4 o 5 tipos de opciones de personal y guardar esa info
-                             		  
-			Manteleria_Blanca, 	bool //Se pregunta si quiere Manteleria 
-			Detalle_de_Manteleria    Lo mismo que con el personal, ofrecer entre cantidad de personas algunas opciones y guardar esa info.
-			
-			seña, float //20%
-			saldo, float
-			
-			tomarPedido() 		//Nuevo Pedido. Si tiene mas de 2 pedidos el usuario o la panaderia? Cualquiera sea el caso podemos usar exception para cumplir consigna
-			bajaPedido()
-            	-Baja por cancelacion (debe abonar) o por realizacion .
-            	-Mas de 1 mes de Antelacion,no devolver seña. Si es menos de un mes, paga el servicio completo.
-            	-Si llega a la fecha del pedido con saldo es 0 (no se pago), baja. 
-			
-			agregarServicio()	//Agrega servicio a Pedido.
-			borrarServicio() 	//Quita ervicio del Pedido. 
-			registrarPago() 	//suma dinero al saldo
-			registrarSeña() 	//suma la seña 
-					
-			
--	Clase Clientes
-			nombre, string
-			apellido, string
-			dni, integer
-			telefono, integer
-			direccion, string	
-			
-			AgregarCliente()	//nuevo cliente
-			borrarCliente()		//Borra cliente, si es que esta vacio (usar exception si tiene pedidos para cumplir)
-			
-			
-			
-
-			
- 
- */
+*/
 
 using System;
 using System.Collections;
@@ -173,8 +112,7 @@ namespace Proyecto_Pasteleria_G1
 			
 			Console.WriteLine("");	
 			Console.WriteLine("Hola "+ ClienteActivo.Nombre+ ", seleccione una opcion: ");
-			
-			
+						
 			
 			//Saraza para ver como fluye el sistema.
 			Console.WriteLine("");
