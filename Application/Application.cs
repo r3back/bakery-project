@@ -9,7 +9,6 @@ namespace Application;
 
 public class Application
 {
-    
     public static void Main(String[] args)
     {
         IFabricaServicio fabrica = new FabricaServicio();
@@ -24,17 +23,13 @@ public class Application
         {
             cliente = PreguntarSiEsCliente(pasteleria);
         }
-        
-        //Optional<ICliente> 
     }
 
     public static Optional<ICliente> PreguntarSiEsCliente(IServicioPasteleria pasteleria)
     {
-        Console.Write("Es cliente? Si/No: ");
-        string esCliente = Console.ReadLine();
-			
-        //aca podemos agregar una exception para que cache si no escribe Si/No, que vuelva a preguntar o diga opcion incorrecta y vuelva a preguntar
-        if (esCliente.Equals("No")) {
+        string esCliente = GetConsoleLine<string>("Es cliente? Si/No: ").ToLower();
+
+        if (esCliente.Equals("no")) {
             return NewClient(pasteleria);
         }
         
@@ -53,17 +48,12 @@ public class Application
         
         Console.WriteLine("Ingrese su datos por favor: ");
         
-        Console.Write ("Nombre: ");	   
-        var nombre    = Console.ReadLine();
-        Console.Write ("Apellido: ");  
-        var apellido  = Console.ReadLine();
-        Console.Write ("DNI: ");       
-        var dni = Console.ReadLine();
-        Console.Write ("Telefono: ");  
-        var telefono  = Console.ReadLine();
-        Console.Write ("Direccion: "); 
-        var direccion = Console.ReadLine();
-	    			
+        string nombre = GetConsoleLine<string>("Nombre: ");
+        string apellido = GetConsoleLine<string>("Apellido: ");
+        string dni = GetConsoleLine<string>("Dni: ");
+        string telefono = GetConsoleLine<string>("Telefono: ");
+        string direccion = GetConsoleLine<string>("Direccion: ");
+        
         ICliente cliente = new Cliente(nombre, apellido, dni, telefono, direccion);
 
         return Optional<ICliente>.Of(clientes.Agregar(cliente));
@@ -72,10 +62,24 @@ public class Application
     public static Optional<ICliente> GetCliente(IServicioPasteleria pasteleria){
         IServicioClientes clientes = pasteleria.ObtenerServicioClientes();
 
-        Console.WriteLine("Ingrese su numero de documento: ");
-
-        var dni = Console.ReadLine();
-
+        string dni = GetConsoleLine<string>("Ingrese su numero de documento: ");
+        
         return clientes.ObtenerPorId(dni);
+    }
+
+    private static T GetConsoleLine<T>(string message)
+    {
+        Console.WriteLine(message);
+
+        string lineaDeConsola = Console.ReadLine();
+        
+        if (typeof(T) == typeof(int))
+        {
+            return (T) (object) Int64.Parse(lineaDeConsola);
+        }
+        else
+        {
+            return (T) (object) lineaDeConsola;
+        }
     }
 }
