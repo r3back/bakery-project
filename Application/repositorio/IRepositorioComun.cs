@@ -1,9 +1,10 @@
 ﻿using Application.util;
-
-namespace Application.repository;
+namespace Application.repositorio;
 
 public interface IRepositorioComun<T, TE>
 {
+    public List<T> ObtenerTodos();
+
     public T Agregar(T cliente);
     
     public void Eliminar(T cliente);

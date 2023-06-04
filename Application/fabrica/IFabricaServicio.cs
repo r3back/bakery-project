@@ -1,7 +1,6 @@
-﻿using Application.model;
-using Application.service;
+﻿using Application.servicio;
 
-namespace Application.factory;
+namespace Application.fabrica;
 
 public interface IFabricaServicio
 {

@@ -1,6 +1,6 @@
 ﻿using Application.model;
 
-namespace Application.service;
+namespace Application.servicio;
 
 public interface IServicioClientes : IServicioComun<ICliente, string>
 {

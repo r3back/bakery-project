@@ -1,7 +1,7 @@
 ﻿using Application.model;
 using Application.util;
 
-namespace Application.repository.impl;
+namespace Application.repositorio.impl;
 
 public class RepositorioClienteImpl : IRepositorioCliente
 {
@@ -41,5 +41,10 @@ public class RepositorioClienteImpl : IRepositorioCliente
         {
             return Optional<ICliente>.Empty();
         }
+    }
+    
+    public List<ICliente> ObtenerTodos()
+    {
+        return _clientes;
     }
 }

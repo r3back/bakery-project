@@ -1,8 +1,7 @@
 ﻿using Application.model;
-using Application.model.impl;
 using Application.util;
 
-namespace Application.repository.impl;
+namespace Application.repositorio.impl;
 
 public class RepositorioPedidoImpl : IRepositorioPedido
 {
@@ -42,5 +41,10 @@ public class RepositorioPedidoImpl : IRepositorioPedido
         {
             return Optional<IPedido>.Empty();
         }
+    }
+
+    public List<IPedido> ObtenerTodos()
+    {
+        return _pedidos;
     }
 }

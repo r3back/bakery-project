@@ -1,8 +1,8 @@
-﻿using Application.factory;
-using Application.factory.impl;
+﻿using Application.fabrica;
+using Application.fabrica.impl;
 using Application.model;
 using Application.model.impl;
-using Application.service;
+using Application.servicio;
 using Application.util;
 
 namespace Application;
@@ -15,19 +15,13 @@ public class Application
 
         IServicioPasteleria pasteleria = fabrica.CrearServicioPasteleria();
         
-        MensajesUtil.EnviarMensajeBienvenida();
-        
-        Optional<ICliente> cliente = Optional<ICliente>.Empty();
-
-        while (!cliente.HasValue())
-        {
-            cliente = PreguntarSiEsCliente(pasteleria);
-        }
+        MenuUtil.MenuPrincipal(pasteleria);
     }
 
-    public static Optional<ICliente> PreguntarSiEsCliente(IServicioPasteleria pasteleria)
+
+    private static Optional<ICliente> PreguntarSiEsCliente(IServicioPasteleria pasteleria)
     {
-        string esCliente = GetConsoleLine<string>("Es cliente? Si/No: ").ToLower();
+        string esCliente = ConsolaUtil.GetConsoleLine<string>("Es cliente? Si/No: ").ToLower();
 
         if (esCliente.Equals("no")) {
             return NewClient(pasteleria);
@@ -41,45 +35,31 @@ public class Application
             
         return cliente;
     }
-    
-    public static Optional<ICliente> NewClient(IServicioPasteleria pasteleria)
+
+    private static Optional<ICliente> NewClient(IServicioPasteleria pasteleria)
     {
         IServicioClientes clientes = pasteleria.ObtenerServicioClientes();
         
         Console.WriteLine("Ingrese su datos por favor: ");
         
-        string nombre = GetConsoleLine<string>("Nombre: ");
-        string apellido = GetConsoleLine<string>("Apellido: ");
-        string dni = GetConsoleLine<string>("Dni: ");
-        string telefono = GetConsoleLine<string>("Telefono: ");
-        string direccion = GetConsoleLine<string>("Direccion: ");
+        string nombre = ConsolaUtil.GetConsoleLine<string>("Nombre: ");
+        string apellido = ConsolaUtil.GetConsoleLine<string>("Apellido: ");
+        string dni = ConsolaUtil.GetConsoleLine<string>("Dni: ");
+        string telefono = ConsolaUtil.GetConsoleLine<string>("Telefono: ");
+        string direccion = ConsolaUtil.GetConsoleLine<string>("Direccion: ");
         
         ICliente cliente = new Cliente(nombre, apellido, dni, telefono, direccion);
 
         return Optional<ICliente>.Of(clientes.Agregar(cliente));
     }
-    
-    public static Optional<ICliente> GetCliente(IServicioPasteleria pasteleria){
+
+    private static Optional<ICliente> GetCliente(IServicioPasteleria pasteleria){
         IServicioClientes clientes = pasteleria.ObtenerServicioClientes();
 
-        string dni = GetConsoleLine<string>("Ingrese su numero de documento: ");
+        string dni = ConsolaUtil.GetConsoleLine<string>("Ingrese su numero de documento: ");
         
         return clientes.ObtenerPorId(dni);
     }
 
-    private static T GetConsoleLine<T>(string message)
-    {
-        Console.WriteLine(message);
 
-        string lineaDeConsola = Console.ReadLine();
-        
-        if (typeof(T) == typeof(int))
-        {
-            return (T) (object) Int64.Parse(lineaDeConsola);
-        }
-        else
-        {
-            return (T) (object) lineaDeConsola;
-        }
-    }
 }

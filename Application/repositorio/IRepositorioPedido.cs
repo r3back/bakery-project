@@ -1,6 +1,5 @@
 ﻿using Application.model;
-
-namespace Application.repository;
+namespace Application.repositorio;
 
 public interface IRepositorioPedido : IRepositorioComun<IPedido, int>
 {

@@ -1,8 +1,8 @@
 ﻿using Application.model;
-using Application.repository;
+using Application.repositorio;
 using Application.util;
 
-namespace Application.service.impl;
+namespace Application.servicio.impl;
 
 public class ServicioClientes : IServicioClientes
 {
@@ -33,5 +33,10 @@ public class ServicioClientes : IServicioClientes
     public Optional<ICliente> ObtenerPorId(string id)
     {
         return this._repositorioCliente.ObtenerPorId(id);
+    }
+    
+    public void MostrarTodos()
+    {
+        this._repositorioCliente.ObtenerTodos().ForEach(cliente => Console.WriteLine("Cliente: " + cliente.Nombre));
     }
 }

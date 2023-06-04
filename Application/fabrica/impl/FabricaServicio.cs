@@ -1,9 +1,9 @@
-﻿using Application.repository;
-using Application.repository.impl;
-using Application.service;
-using Application.service.impl;
+﻿using Application.repositorio;
+using Application.repositorio.impl;
+using Application.servicio;
+using Application.servicio.impl;
 
-namespace Application.factory.impl;
+namespace Application.fabrica.impl;
 
 public class FabricaServicio : IFabricaServicio
 {
@@ -11,8 +11,9 @@ public class FabricaServicio : IFabricaServicio
     {
         IServicioPedidos pedidosService = GetPedidosService();
         IServicioClientes clientesService = GetClientesService();
+        IServicioServicios servicioServicios = GetServicioServicios();
 
-        return new ServicioPasteleria(clientesService, pedidosService);
+        return new ServicioPasteleria(clientesService, pedidosService, servicioServicios);
     }
 
     private IServicioPedidos GetPedidosService()
@@ -27,5 +28,12 @@ public class FabricaServicio : IFabricaServicio
         IRepositorioCliente repositorioCliente = new RepositorioClienteImpl();
 
         return new ServicioClientes(repositorioCliente);
+    }
+    
+    private IServicioServicios GetServicioServicios()
+    {
+        IRepositorioServicio repositorioServicio = new RepositorioServicioImpl();
+
+        return new ServicioServicios(repositorioServicio);
     }
 }

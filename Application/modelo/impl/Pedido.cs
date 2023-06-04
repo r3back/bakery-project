@@ -2,19 +2,29 @@
 
 public class Pedido : IPedido
 {
+    private static int PEDIDO_CONTADOR = 0;
     private List<IServicio> _servicios;
     private double _gastosDeComida;
     private string _fechaDelEvento;
     private string _dniCliente;
+    private double _gastoTotal;
     private int _idPedido;
+    private double _saldo;
+    private double _seña;
 
-    public Pedido(double gastosDeComida, string fechaDelEvento, string dniCliente, int idPedido)
+    public Pedido(double gastosDeComida, string fechaDelEvento, string dniCliente, double gastoTotal,
+                  double saldo, double seña)
     {
         _servicios = new List<IServicio>();
         _gastosDeComida = gastosDeComida;
         _fechaDelEvento = fechaDelEvento;
+        _idPedido = PEDIDO_CONTADOR;
+        _gastoTotal = gastoTotal;
         _dniCliente = dniCliente;
-        _idPedido = idPedido;
+        _saldo = saldo;
+        _seña = seña;
+
+        PEDIDO_CONTADOR++;
     }
 
     public List<IServicio> Servicios
@@ -43,6 +53,23 @@ public class Pedido : IPedido
     public int IdPedido
     {
         get => _idPedido;
-        set => _idPedido = value;
+    }
+    
+    public double GastoTotal
+    {
+        get => _gastoTotal;
+        set => _gastoTotal = value;
+    }
+    
+    public double Saldo
+    {
+        get => _saldo;
+        set => _saldo = value;
+    }
+        
+    public double Seña
+    {
+        get => _seña;
+        set => _seña = value;
     }
 }

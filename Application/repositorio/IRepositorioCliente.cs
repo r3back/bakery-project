@@ -1,7 +1,5 @@
 ﻿using Application.model;
-using Application.model.impl;
-
-namespace Application.repository;
+namespace Application.repositorio;
 
 public interface IRepositorioCliente : IRepositorioComun<ICliente, string>
 {

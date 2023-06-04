@@ -10,5 +10,11 @@ public interface IPedido
 
     public string DniCliente { get; set; }
 
-    public int IdPedido { get; set; }
+    public int IdPedido { get; }
+    
+    public double GastoTotal { get; set; }
+    
+    public double Saldo { get; set; }
+        
+    public double Seña { get; set; }
 }
