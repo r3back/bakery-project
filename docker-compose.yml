@@ -4,7 +4,7 @@ services:
   csharp:
     image: mcr.microsoft.com/dotnet/core/sdk:2.1
     volumes:
-      - .:/app
-    command: dotnet run
+      - .:/app/YourCSharpProject
+    command: dotnet run --project Application.cs
     
     
