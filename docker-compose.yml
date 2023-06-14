@@ -1,10 +1,10 @@
 ﻿version: "3"
 
 services:
-  csharp:
-    image: mcr.microsoft.com/dotnet/core/sdk:2.1
+  csharp-service:
+    image: esolang/csharp
     volumes:
-      - .:/app/YourCSharpProject
-    command: dotnet run --project Application.cs
+      - ./Application/.:/code:ro
+    command: /bin/csharp Application.cs
     
     
