@@ -1,4 +1,4 @@
-﻿using Application.model;
+﻿using Application.modelo;
 using Application.repositorio;
 using Application.util;
 
@@ -38,5 +38,10 @@ public class ServicioPedidos : IServicioPedidos
     public void MostrarTodos()
     {
         this._repositorioPedidos.ObtenerTodos().ForEach(pedido => Console.WriteLine("Pedido: " + pedido.IdPedido));
+    }
+    
+    public List<IPedido> ObtenerTodos()
+    {
+        return this._repositorioPedidos.ObtenerTodos();
     }
 }

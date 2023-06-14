@@ -1,4 +1,4 @@
-﻿namespace Application.model;
+﻿namespace Application.modelo;
 
 public interface ICliente
 {

@@ -1,4 +1,4 @@
-﻿using Application.model;
+﻿using Application.modelo;
 
 namespace Application.servicio;
 

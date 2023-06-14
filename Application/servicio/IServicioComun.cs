@@ -12,5 +12,7 @@ public interface IServicioComun<T, TE>
     
     public Optional<T> ObtenerPorId(TE id);
 
+    public List<T> ObtenerTodos();
+
     public void MostrarTodos();
 }

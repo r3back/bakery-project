@@ -1,0 +1,10 @@
+﻿version: "3"
+
+services:
+  csharp:
+    image: mcr.microsoft.com/dotnet/core/sdk:2.1
+    volumes:
+      - .:/app
+    command: dotnet run
+    
+    

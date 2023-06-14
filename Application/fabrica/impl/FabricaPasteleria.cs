@@ -5,7 +5,7 @@ using Application.servicio.impl;
 
 namespace Application.fabrica.impl;
 
-public class FabricaServicio : IFabricaServicio
+public class FabricaPasteleria : IFabricaPasteleria
 {
     public IServicioPasteleria CrearServicioPasteleria()
     {

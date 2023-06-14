@@ -1,6 +1,6 @@
-﻿using Application.model;
+﻿using Application.modelo;
 namespace Application.repositorio;
 
-public interface IRepositorioServicio : IRepositorioComun<IServicio, string>
+public interface IRepositorioServicio : IRepositorioComun<IServicio, int>
 {
 }

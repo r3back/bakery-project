@@ -2,7 +2,7 @@
 
 namespace Application.fabrica;
 
-public interface IFabricaServicio
+public interface IFabricaPasteleria
 {
     public IServicioPasteleria CrearServicioPasteleria();
 }

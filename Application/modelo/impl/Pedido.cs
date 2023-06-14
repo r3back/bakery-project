@@ -1,53 +1,51 @@
-﻿namespace Application.model.impl;
+﻿namespace Application.modelo.impl;
 
 public class Pedido : IPedido
 {
     private static int PEDIDO_CONTADOR = 0;
-    private List<IServicio> _servicios;
-    private double _gastosDeComida;
-    private string _fechaDelEvento;
+    private List<IServicioComprado> _servicios;
+    private DateTime _fechaDelEvento;
     private string _dniCliente;
     private double _gastoTotal;
     private int _idPedido;
     private double _saldo;
-    private double _seña;
 
-    public Pedido(double gastosDeComida, string fechaDelEvento, string dniCliente, double gastoTotal,
-                  double saldo, double seña)
+    public Pedido()
     {
-        _servicios = new List<IServicio>();
-        _gastosDeComida = gastosDeComida;
+        this._idPedido = PEDIDO_CONTADOR;
+        this._servicios = new List<IServicioComprado>();
+        
+        PEDIDO_CONTADOR++;
+    }
+    
+    public Pedido(DateTime fechaDelEvento, string dniCliente, double gastoTotal,
+                  double saldo)
+    {
+        _servicios = new List<IServicioComprado>();
         _fechaDelEvento = fechaDelEvento;
         _idPedido = PEDIDO_CONTADOR;
         _gastoTotal = gastoTotal;
         _dniCliente = dniCliente;
         _saldo = saldo;
-        _seña = seña;
 
         PEDIDO_CONTADOR++;
     }
 
-    public List<IServicio> Servicios
+    public List<IServicioComprado> Servicios
     {
         get => _servicios;
     }
 
-    public double GastosDeComida
-    {
-        get => _gastosDeComida;
-        set => _gastosDeComida = value;
-    }
-
-    public string FechaDelEvento
+    public DateTime FechaDelEvento
     {
         get => _fechaDelEvento;
-        set => _fechaDelEvento = value ?? throw new ArgumentNullException(nameof(value));
+        set => _fechaDelEvento = value;
     }
 
     public string DniCliente
     {
         get => _dniCliente;
-        set => _dniCliente = value ?? throw new ArgumentNullException(nameof(value));
+        set => _dniCliente = value;
     }
 
     public int IdPedido
@@ -60,16 +58,10 @@ public class Pedido : IPedido
         get => _gastoTotal;
         set => _gastoTotal = value;
     }
-    
+
     public double Saldo
     {
         get => _saldo;
         set => _saldo = value;
-    }
-        
-    public double Seña
-    {
-        get => _seña;
-        set => _seña = value;
     }
 }

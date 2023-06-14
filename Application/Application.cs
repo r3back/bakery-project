@@ -1,7 +1,7 @@
 ﻿using Application.fabrica;
 using Application.fabrica.impl;
-using Application.model;
-using Application.model.impl;
+using Application.modelo;
+using Application.modelo.impl;
 using Application.servicio;
 using Application.util;
 
@@ -9,25 +9,28 @@ namespace Application;
 
 public class Application
 {
-    public static void Main(String[] args)
+    private static readonly IServicioPasteleria Pasteleria = new FabricaPasteleria().CrearServicioPasteleria();
+    
+    public static void Main(string[] args)
     {
-        IFabricaServicio fabrica = new FabricaServicio();
-
-        IServicioPasteleria pasteleria = fabrica.CrearServicioPasteleria();
-        
-        MenuUtil.MenuPrincipal(pasteleria);
+        MenuUtil.MenuPrincipal(Pasteleria);
     }
 
+    // Singleton
+    public static IServicioPasteleria ObtenerInstancia()
+    {
+        return Pasteleria;
+    }
 
-    private static Optional<ICliente> PreguntarSiEsCliente(IServicioPasteleria pasteleria)
+    private static Optional<ICliente> PreguntarSiEsCliente()
     {
         string esCliente = ConsolaUtil.GetConsoleLine<string>("Es cliente? Si/No: ").ToLower();
 
         if (esCliente.Equals("no")) {
-            return NewClient(pasteleria);
+            return NewClient();
         }
         
-        Optional<ICliente> cliente = GetCliente(pasteleria);
+        Optional<ICliente> cliente = GetCliente();
 
         if (!cliente.HasValue()) {
             Console.WriteLine("Cliente no encontrado con ese id!");
@@ -36,9 +39,9 @@ public class Application
         return cliente;
     }
 
-    private static Optional<ICliente> NewClient(IServicioPasteleria pasteleria)
+    private static Optional<ICliente> NewClient()
     {
-        IServicioClientes clientes = pasteleria.ObtenerServicioClientes();
+        IServicioClientes clientes = Pasteleria.ObtenerServicioClientes();
         
         Console.WriteLine("Ingrese su datos por favor: ");
         
@@ -53,8 +56,8 @@ public class Application
         return Optional<ICliente>.Of(clientes.Agregar(cliente));
     }
 
-    private static Optional<ICliente> GetCliente(IServicioPasteleria pasteleria){
-        IServicioClientes clientes = pasteleria.ObtenerServicioClientes();
+    private static Optional<ICliente> GetCliente(){
+        IServicioClientes clientes = Pasteleria.ObtenerServicioClientes();
 
         string dni = ConsolaUtil.GetConsoleLine<string>("Ingrese su numero de documento: ");
         

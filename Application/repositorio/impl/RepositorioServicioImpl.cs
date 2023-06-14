@@ -1,25 +1,25 @@
-﻿using Application.model;
+﻿using Application.modelo;
 using Application.util;
 
 namespace Application.repositorio.impl;
 
 public class RepositorioServicioImpl : IRepositorioServicio
 {
-    private List<IServicio> _clientes = new List<IServicio>();
+    private List<IServicio> _servicios = new List<IServicio>();
 
     public IServicio Agregar(IServicio servicio)
     {
-        _clientes.Add(servicio);
+        _servicios.Add(servicio);
 
         return servicio;
     }
 
     public void Eliminar(IServicio servicio)
     {
-        _clientes.Remove(servicio);
+        _servicios.Remove(servicio);
     }
 
-    public void EliminarPorId(string id)
+    public void EliminarPorId(int id)
     {
         var servicio = ObtenerPorId(id);
 
@@ -29,11 +29,11 @@ public class RepositorioServicioImpl : IRepositorioServicio
         }
     }
 
-    public Optional<IServicio> ObtenerPorId(string id)
+    public Optional<IServicio> ObtenerPorId(int id)
     {
         try
         {
-            var servicio = _clientes.Where(s => s.NombreServicio == id);
+            var servicio = _servicios.Where(s => s.Id == id);
 
             return Optional<IServicio>.Of(servicio.First());
         }
@@ -45,6 +45,6 @@ public class RepositorioServicioImpl : IRepositorioServicio
     
     public List<IServicio> ObtenerTodos()
     {
-        return _clientes;
+        return _servicios;
     }
 }

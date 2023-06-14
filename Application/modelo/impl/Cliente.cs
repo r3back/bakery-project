@@ -1,4 +1,4 @@
-﻿namespace Application.model.impl;
+﻿namespace Application.modelo.impl;
 
 public class Cliente : ICliente
 {
@@ -7,6 +7,11 @@ public class Cliente : ICliente
     private string _apellido;
     private string _nombre;
     private string _dni;
+
+    public Cliente()
+    {
+        
+    }
 
     public Cliente(string nombre, string apellido, string dni, string telefono, string direccion)
     {

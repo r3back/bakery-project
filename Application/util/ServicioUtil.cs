@@ -1,5 +1,10 @@
-﻿using Application.model;
-using Application.model.impl;
+﻿using Application.modelo;
+using Application.modelo.impl;
+using Application.paso;
+using Application.paso.servicio.agregar;
+using Application.paso.servicio.eliminar;
+using Application.paso.servicio;
+using Application.paso.servicio.listar;
 using Application.servicio;
 
 namespace Application.util;
@@ -21,9 +26,7 @@ public class ServicioUtil
                 EliminarServicio(pasteleria);
                 break;
             case "3":
-                pasteleria.ObtenerServicioServicios().MostrarTodos();
-                
-                MostrarIrAtras(pasteleria);
+                MostrarServicios(pasteleria);
                 break;
             case "4":
                 MenuUtil.MenuPrincipal(pasteleria);
@@ -33,69 +36,37 @@ public class ServicioUtil
         }
     }
 
-    private static void MostrarIrAtras(IServicioPasteleria pasteleria)
+    private static void MostrarServicios(IServicioPasteleria pasteleria)
     {
-        string atras = "";
+        IAppPaso<IServicio> pasoListar = new PasoListar();
 
-        while (atras != "1")
-        {        
-            atras = ConsolaUtil.GetConsoleLine<string>("1) Volver atras").ToLower();
+        IAppPasos<IServicio> pasos = new ListarServicioPasos(pasoListar);
 
-            Console.WriteLine("Seleccione una opcion:");
-            
-            if (atras != "1")
-            {
-                Console.WriteLine("[ERROR] Opcion Invalida!");
-            }
-        }
+        pasos.Ejecutar(null);
+        
         MostrarMenuServicios(pasteleria);
     }
     
     public static void AgregarServicio(IServicioPasteleria pasteleria)
     {
-        string nombre = "";
+        IAppPaso<IServicio> pasoPrecio = new PasoPrecio(null);
+        IAppPaso<IServicio> pasoTipo = new PasoTipo(pasoPrecio);
+        IAppPaso<IServicio> pasoNombre = new PasoNombre(pasoTipo);
         
-        while (true)
-        {
-            nombre = ConsolaUtil.GetConsoleLine<string>("Ingresa el nombre del servicio: ").ToLower();
+        IAppPasos<IServicio> pasos = new AgregarServicioPasos(pasoNombre);
 
-            Optional<IServicio> servicio = pasteleria.ObtenerServicioServicios().ObtenerPorId(nombre);
-
-            if (servicio.HasValue()) {
-                Console.WriteLine("[ERROR] Ya existe un servicio con ese nombre!");
-            } else {
-                break;
-            }
-        }
-                
-        string tipo = ConsolaUtil.GetConsoleLine<string>("Ingresa el tipo de servicio: ").ToLower();
-
-        IServicio paraAgregar = new Servicio(nombre, tipo);
-
-        pasteleria.ObtenerServicioServicios().Agregar(paraAgregar);
+        pasos.Ejecutar(new Servicio());
         
-        Console.WriteLine("Servicio agregado correctamente!");
-
         MostrarMenuServicios(pasteleria);
     }
     
     private static void EliminarServicio(IServicioPasteleria pasteleria)
     {
-        while (true)
-        {
-            string nombre = ConsolaUtil.GetConsoleLine<string>("Ingresa el nombre del servicio a eliminar: ").ToLower();
+        IAppPaso<IServicio> pasoEliminar = new PasoEliminar();
 
-            Optional<IServicio> servicio = pasteleria.ObtenerServicioServicios().ObtenerPorId(nombre);
+        IAppPasos<IServicio> pasos = new EliminarServicioPasos(pasoEliminar);
 
-            if (servicio.HasValue()) {
-                pasteleria.ObtenerServicioServicios().Eliminar(servicio.GetValue());
-                Console.WriteLine("Servicio eliminado correctamente!");
-                break;
-            } else {
-                Console.WriteLine("[ERROR] No existe un servicio con ese nombre!");
-                break;
-            }
-        }
+        pasos.Ejecutar(null);
         
         MostrarMenuServicios(pasteleria);
     }

@@ -1,4 +1,4 @@
-﻿using Application.model;
+﻿using Application.modelo;
 namespace Application.repositorio;
 
 public interface IRepositorioCliente : IRepositorioComun<ICliente, string>

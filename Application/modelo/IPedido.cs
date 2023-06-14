@@ -1,12 +1,10 @@
-﻿namespace Application.model;
+﻿namespace Application.modelo;
 
 public interface IPedido
 {
-    public List<IServicio> Servicios { get; }
-
-    public double GastosDeComida { get; set; }
-
-    public string FechaDelEvento { get; set; }
+    public List<IServicioComprado> Servicios { get; }
+    
+    public DateTime FechaDelEvento { get; set; }
 
     public string DniCliente { get; set; }
 
@@ -15,6 +13,4 @@ public interface IPedido
     public double GastoTotal { get; set; }
     
     public double Saldo { get; set; }
-        
-    public double Seña { get; set; }
 }

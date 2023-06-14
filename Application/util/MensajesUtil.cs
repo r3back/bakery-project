@@ -15,6 +15,14 @@ public class MensajesUtil
         
         EnviarMensaje(mensaje);
     }
+    
+    public static void EnviarMensajePedidos()
+    {
+        List<string> mensaje = ObtenerMenuPedidos();
+        
+        EnviarMensaje(mensaje);
+    }
+
 
     private static void EnviarMensaje(List<string> mensaje)
     {

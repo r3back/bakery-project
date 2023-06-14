@@ -1,4 +1,4 @@
-﻿using Application.model;
+﻿using Application.modelo;
 using Application.repositorio;
 using Application.util;
 
@@ -38,5 +38,10 @@ public class ServicioClientes : IServicioClientes
     public void MostrarTodos()
     {
         this._repositorioCliente.ObtenerTodos().ForEach(cliente => Console.WriteLine("Cliente: " + cliente.Nombre));
+    }
+
+    public List<ICliente> ObtenerTodos()
+    {
+        return this._repositorioCliente.ObtenerTodos();
     }
 }
