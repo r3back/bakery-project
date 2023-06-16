@@ -29,7 +29,7 @@ public class ServicioUtil
                 MostrarServicios(pasteleria);
                 break;
             case "4":
-                MenuUtil.MenuPrincipal(pasteleria);
+                MenuUtil.MenuPrincipal();
                 break;
             default:
                 break;
