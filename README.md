@@ -24,7 +24,7 @@ $ dotnet build --project Bakery-Project
 $ dotnet run --project Bakery-Project
 ```
 
-### Run With Docer
+### Run With Docker
 ```console
 # clone the repo
 $ git clone https://github.com/r3back/bakery-project.git
