@@ -12,7 +12,7 @@ jobs:
       - run:
           name: build app
           command: |
-            dotnet run --project /temporal/project/Bakery-Project
+            dotnet run -d --project /temporal/project/Bakery-Project | cat
 workflows:
   sample:
     jobs:
