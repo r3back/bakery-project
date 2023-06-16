@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: r3b4ck/dotnet7:0.0.1
+      - image: r3b4ck/dotnet7:latest
         auth:
           username: r3b4ck
           password: $DOCKERHUB_PASSWORD
