@@ -10,7 +10,7 @@ public class Application
     
     public static void Main(string[] args)
     {
-        MenuUtil.MenuPrincipal(Pasteleria);
+        MenuUtil.MenuPrincipal();
     }
 
     // Singleton

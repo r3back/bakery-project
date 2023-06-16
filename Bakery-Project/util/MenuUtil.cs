@@ -1,11 +1,8 @@
-﻿using Application.modelo;
-using Application.servicio;
-
-namespace Application.util;
+﻿namespace Application.util;
 
 public class MenuUtil
 {
-    public static void MenuPrincipal(IServicioPasteleria pasteleria)
+    public static void MenuPrincipal()
     {
         MensajesUtil.EnviarMensajeBienvenida();
         
@@ -14,7 +11,7 @@ public class MenuUtil
         switch (opcionMenu)
         {
             case "1":
-                ServicioUtil.MostrarMenuServicios(pasteleria);
+                ServicioUtil.MostrarMenuServicios(Application.ObtenerInstancia());
                 break;
             case "2":
                 
