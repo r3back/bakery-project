@@ -2,11 +2,11 @@
 
 namespace Application.paso.pedidos;
 
-public class AgregarPedidoPasos : IAppPasos<IPedido>
+public class PedidoPasos : IAppPasos<IPedido>
 {
     private IAppPaso<IPedido> step;
 
-    public AgregarPedidoPasos(IAppPaso<IPedido> step)
+    public PedidoPasos(IAppPaso<IPedido> step)
     {
         this.step = step;
     }

@@ -37,7 +37,19 @@ public class ServicioPedidos : IServicioPedidos
 
     public void MostrarTodos()
     {
-        this._repositorioPedidos.ObtenerTodos().ForEach(pedido => Console.WriteLine("Pedido: " + pedido.IdPedido));
+        Console.WriteLine("     ");
+        Console.WriteLine("     ");
+        Console.WriteLine("***************************************************");
+
+        Console.WriteLine("     ");
+        Console.WriteLine("Pedidos Totales: " + this._repositorioPedidos.ObtenerTodos().Count);
+        Console.WriteLine("     ");
+
+        this._repositorioPedidos.ObtenerTodos()
+            .ForEach(servicio => Console.WriteLine("Id: " + servicio.IdPedido + " | Cliente: " + servicio.DniCliente + " | Saldo: " + servicio.Saldo + " | Fecha: " + servicio.FechaDelEvento));
+        Console.WriteLine("     ");
+        Console.WriteLine("***************************************************");
+        Console.WriteLine("     ");
     }
     
     public List<IPedido> ObtenerTodos()

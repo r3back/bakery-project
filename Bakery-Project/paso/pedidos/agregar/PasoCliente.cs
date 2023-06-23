@@ -19,12 +19,22 @@ public class PasoCliente : IAppPaso<IPedido>
     {
         string dni = ConsolaUtil.GetConsoleLine<string>("Ingresa el dni del cliente: ").ToLower();
 
-        ICliente existe = Application.ObtenerInstancia()
+        Optional<ICliente> existe = Application.ObtenerInstancia()
             .ObtenerServicioClientes()
-            .ObtenerPorId(dni)
-            .OrElse(RegistrarCliente(dni));
+            .ObtenerPorId(dni);
 
-        pedido.DniCliente = existe.Dni;
+        ICliente cliente = null;
+        
+        if (existe.HasValue())
+        {
+            cliente = existe.GetValue();
+        }
+        else
+        {
+            cliente = RegistrarCliente(dni);
+        }
+
+        pedido.DniCliente = cliente.Dni;
         
         return Optional<IAppPaso<IPedido>>
             .Of(_siguiente)
@@ -39,7 +49,7 @@ public class PasoCliente : IAppPaso<IPedido>
         IAppPaso<ICliente> pasoDireccion = new PasoDireccion(null);
         IAppPaso<ICliente> pasoApellido = new PasoApellido(pasoDireccion);
         IAppPaso<ICliente> pasoNombre = new PasoNombre(pasoApellido);
-        ICliente nuevoCliente = new AgregarClientePasos(pasoNombre).Ejecutar(new Cliente());
+        ICliente nuevoCliente = new ClientePasos(pasoNombre).Ejecutar(new Cliente());
 
         nuevoCliente.Dni = dni;
 

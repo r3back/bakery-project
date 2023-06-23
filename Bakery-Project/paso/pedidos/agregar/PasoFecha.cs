@@ -9,7 +9,7 @@ namespace Application.paso.pedidos.agregar;
 
 public class PasoFecha : IAppPaso<IPedido>
 {
-    private static readonly string FormatoFecha = "dd/MM/YYYY";
+    private static readonly string FormatoFecha = "dd/MM/yyyy";
     private static readonly int MaximosPedidosPorDia = 2;
     private static readonly string FormatoArg = "es-AR";
     private IAppPaso<IPedido>? _siguiente;

@@ -28,7 +28,7 @@ public class PasoListar : IAppPaso<ICliente>
             }
         }
         
-        ClienteUtil.MostrarMenuClientes(pasteleria);
+        ClienteUtil.MostrarMenuClientes();
         
         return servicio;
     }

@@ -31,12 +31,18 @@ public class PasoCheckout : IAppPaso<IPedido>
         
         Console.WriteLine("***************************************************");
         Console.WriteLine("Pedido Realizado Exitosamente!");
-        
+        Console.WriteLine("Id del pedido: " + pedido.IdPedido);
         Console.WriteLine("Gastos Totales: " + pedido.GastoTotal + "$");
         Console.WriteLine("Importe de Seña: " + seña + "$");
         Console.WriteLine("Saldo remanente: " + pedido.Saldo + "$");
+        Console.WriteLine("Fecha: " + pedido.FechaDelEvento);
+
         Console.WriteLine("***************************************************");
 
+        Application.ObtenerInstancia()
+            .ObtenerServicioPedidos()
+            .Agregar(pedido);
+        
         return Optional<IAppPaso<IPedido>>
             .Of(_siguiente)
             .Map(paso => paso.Ejecutar(pedido))

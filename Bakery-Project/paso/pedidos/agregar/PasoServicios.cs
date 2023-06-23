@@ -17,11 +17,14 @@ public class PasoServicios : IAppPaso<IPedido>
 
     public IPedido Ejecutar(IPedido pedido)
     {
-        Console.WriteLine("Servicios Disponibles:");
-        MostrarServicios(Application.ObtenerInstancia().ObtenerServicioServicios().ObtenerTodos());
-        Console.WriteLine("Servicios En el pedido:");
-        MostrarServiciosComprados(pedido.Servicios);
-        Console.WriteLine("***************************************************");
+        List<IServicio> servicios = Application.ObtenerInstancia().ObtenerServicioServicios().ObtenerTodos();
+
+        MostrarServicios(servicios);
+
+        if (servicios.Count >= 1)
+        {
+            MostrarServiciosComprados(pedido.Servicios);
+        }
 
         string id = ConsolaUtil.GetConsoleLine<string>("Ingresa el id a agregar o ingrese listo para terminar: ").ToLower();
 
@@ -70,12 +73,32 @@ public class PasoServicios : IAppPaso<IPedido>
     private void MostrarServicios(List<IServicio> servicios)
     {
         Console.WriteLine("***************************************************");
+
+        Console.WriteLine("Servicios Disponibles:");
+
+        if (servicios.Count == 0)
+        {
+            Console.WriteLine("- No hay servicios disponibles para agregar.");
+            return;
+        }
+        
         servicios.ForEach(servicio => Console.WriteLine("- Id: " + servicio.Id +  " | Nombre: " +  servicio.NombreServicio + " | Tipo: " + servicio.TipoServicio + " | Precio: " + servicio.Precio));
+        Console.WriteLine("***************************************************");
+        Console.WriteLine(" ");
     }
     
     private void MostrarServiciosComprados(List<IServicioComprado> servicios)
     {
+        if (servicios.Count <= 0)
+        {
+            return;
+        }
+
+        Console.WriteLine("Servicios en el pedido:");
+
+        servicios.ForEach(servicio => Console.WriteLine("- Id: " + servicio.Id +  " | Nombre: " +  servicio.NombreServicio + " | Tipo: " + servicio.TipoServicio + " | Cantidad: X" + servicio.Cantidad));
         Console.WriteLine("***************************************************");
-        servicios.ForEach(servicio => Console.WriteLine("- Id: " + servicio.Id +  " | Nombre: " +  servicio.NombreServicio + " | Tipo: " + servicio.TipoServicio + " | X" + servicio.Cantidad));
+        Console.WriteLine(" ");
+
     }
 }

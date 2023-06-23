@@ -5,28 +5,27 @@ using Application.paso.servicio.agregar;
 using Application.paso.servicio.eliminar;
 using Application.paso.servicio;
 using Application.paso.servicio.listar;
-using Application.servicio;
 
 namespace Application.util;
 
 public class ServicioUtil
 {
-    public static void MostrarMenuServicios(IServicioPasteleria pasteleria)
+    public static void MostrarMenuServicios()
     {
         MensajesUtil.EnviarMensajeServicios();
         
         string opcionMenu = ConsolaUtil.GetConsoleLine<string>("Seleccione una opcion: ").ToLower();
-
+        
         switch (opcionMenu)
         {
             case "1":
-                AgregarServicio(pasteleria);
+                AgregarServicio();
                 break;
             case "2":
-                EliminarServicio(pasteleria);
+                EliminarServicio();
                 break;
             case "3":
-                MostrarServicios(pasteleria);
+                MostrarServicios();
                 break;
             case "4":
                 MenuUtil.MenuPrincipal();
@@ -36,38 +35,38 @@ public class ServicioUtil
         }
     }
 
-    private static void MostrarServicios(IServicioPasteleria pasteleria)
+    private static void MostrarServicios()
     {
         IAppPaso<IServicio> pasoListar = new PasoListar();
 
-        IAppPasos<IServicio> pasos = new ListarServicioPasos(pasoListar);
+        IAppPasos<IServicio> pasos = new ServicioPasos(pasoListar);
 
         pasos.Ejecutar(null);
         
-        MostrarMenuServicios(pasteleria);
+        MostrarMenuServicios();
     }
     
-    public static void AgregarServicio(IServicioPasteleria pasteleria)
+    public static void AgregarServicio()
     {
         IAppPaso<IServicio> pasoPrecio = new PasoPrecio(null);
         IAppPaso<IServicio> pasoTipo = new PasoTipo(pasoPrecio);
         IAppPaso<IServicio> pasoNombre = new PasoNombre(pasoTipo);
         
-        IAppPasos<IServicio> pasos = new AgregarServicioPasos(pasoNombre);
+        IAppPasos<IServicio> pasos = new ServicioPasos(pasoNombre);
 
         pasos.Ejecutar(new Servicio());
         
-        MostrarMenuServicios(pasteleria);
+        MostrarMenuServicios();
     }
     
-    private static void EliminarServicio(IServicioPasteleria pasteleria)
+    private static void EliminarServicio()
     {
         IAppPaso<IServicio> pasoEliminar = new PasoEliminar();
 
-        IAppPasos<IServicio> pasos = new EliminarServicioPasos(pasoEliminar);
+        IAppPasos<IServicio> pasos = new ServicioPasos(pasoEliminar);
 
         pasos.Ejecutar(null);
         
-        MostrarMenuServicios(pasteleria);
+        MostrarMenuServicios();
     }
 }

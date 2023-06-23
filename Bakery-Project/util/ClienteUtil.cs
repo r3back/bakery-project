@@ -11,11 +11,13 @@ namespace Application.util;
 
 public class ClienteUtil
 {
-    public static void MostrarMenuClientes(IServicioPasteleria pasteleria)
+    public static void MostrarMenuClientes()
     {
-        MensajesUtil.EnviarMensajeServicios();
+        MensajesUtil.EnviarMensajeClientes();
         
         string opcionMenu = ConsolaUtil.GetConsoleLine<string>("Seleccione una opcion: ").ToLower();
+
+        IServicioPasteleria pasteleria = Application.ObtenerInstancia();
 
         switch (opcionMenu)
         {
@@ -39,10 +41,10 @@ public class ClienteUtil
     private static void MostrarClientes(IServicioPasteleria pasteleria)
     {
         IAppPaso<ICliente> pasoListar = new PasoListar();
-        IAppPasos<ICliente> pasos = new ListarClientePasos(pasoListar);
+        IAppPasos<ICliente> pasos = new ClientePasos(pasoListar);
         pasos.Ejecutar(null);
         
-        MostrarMenuClientes(pasteleria);
+        MostrarMenuClientes();
     }
     
     public static void AgregarCliente(IServicioPasteleria pasteleria)
@@ -51,20 +53,20 @@ public class ClienteUtil
         IAppPaso<ICliente> pasoApellido = new PasoApellido(pasoDireccion);
         IAppPaso<ICliente> pasoNombre = new PasoNombre(pasoApellido);
         IAppPaso<ICliente> pasoDni = new PasoDni(pasoNombre);
-        IAppPasos<ICliente> pasos = new AgregarClientePasos(pasoDni);
+        IAppPasos<ICliente> pasos = new ClientePasos(pasoDni);
 
         pasos.Ejecutar(new Cliente());
         
-        MostrarMenuClientes(pasteleria);
+        MostrarMenuClientes();
     }
     
     private static void EliminarCliente(IServicioPasteleria pasteleria)
     {
         IAppPaso<ICliente> pasoEliminar = new PasoEliminar();
-        IAppPasos<ICliente> pasos = new EliminarClientePasos(pasoEliminar);
+        IAppPasos<ICliente> pasos = new ClientePasos(pasoEliminar);
 
         pasos.Ejecutar(null);
         
-        MostrarMenuClientes(pasteleria);
+        MostrarMenuClientes();
     }
 }

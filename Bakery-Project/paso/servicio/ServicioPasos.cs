@@ -2,11 +2,11 @@
 
 namespace Application.paso.servicio;
 
-public class AgregarServicioPasos : IAppPasos<IServicio>
+public class ServicioPasos : IAppPasos<IServicio>
 {
     private IAppPaso<IServicio> step;
 
-    public AgregarServicioPasos(IAppPaso<IServicio> step)
+    public ServicioPasos(IAppPaso<IServicio> step)
     {
         this.step = step;
     }

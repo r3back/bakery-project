@@ -39,6 +39,7 @@ public class RepositorioClienteImpl : IRepositorioCliente
         }
         catch (Exception e)
         {
+            Console.WriteLine(e.Message);
             return Optional<ICliente>.Empty();
         }
     }

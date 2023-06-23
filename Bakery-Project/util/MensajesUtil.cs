@@ -16,6 +16,13 @@ public class MensajesUtil
         EnviarMensaje(mensaje);
     }
     
+    public static void EnviarMensajeClientes()
+    {
+        List<string> mensaje = ObtenerMenuClientes();
+        
+        EnviarMensaje(mensaje);
+    }
+    
     public static void EnviarMensajePedidos()
     {
         List<string> mensaje = ObtenerMenuPedidos();
@@ -44,6 +51,25 @@ public class MensajesUtil
             "1) Servicios",
             "2) Pedidos",
             "3) Clientes"
+        };
+    }
+    
+    private static List<string> ObtenerMenuClientes()
+    {
+        return new List<string>() {
+            "",
+            "			***************************************************",
+            "			*                                                 *",
+            "			*               Gestion de Clientes               *",
+            "			*                                                 *",
+            "			***************************************************",
+            "		 	",
+            "Seleccione una opcion: ",
+            "           ",
+            "1) Agregar Cliente",
+            "2) Eliminar Clientes",
+            "3) Listar Clientes",
+            "4) Volver Atras"
         };
     }
     
@@ -81,7 +107,8 @@ public class MensajesUtil
             "1) Tomar Pedido",
             "2) Eliminar Pedido",
             "3) Listar Pedidos",
-            "4) Volver Atras"
+            "4) Abonar Pedidos",
+            "5) Volver Atras"
         };
     }
 }

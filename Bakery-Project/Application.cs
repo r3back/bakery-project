@@ -13,7 +13,6 @@ public class Application
         MenuUtil.MenuPrincipal();
     }
 
-    // Singleton
     public static IServicioPasteleria ObtenerInstancia()
     {
         return Pasteleria;

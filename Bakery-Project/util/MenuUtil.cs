@@ -11,22 +11,17 @@ public class MenuUtil
         switch (opcionMenu)
         {
             case "1":
-                ServicioUtil.MostrarMenuServicios(Application.ObtenerInstancia());
+                ServicioUtil.MostrarMenuServicios();
                 break;
             case "2":
-                
+                PedidoUtil.MostrarMenuPedidos();
                 break;
             case "3":
+                ClienteUtil.MostrarMenuClientes();
                 break;
             default:
+                MenuPrincipal();
                 break;
         }
-        
-        //Optional<ICliente> cliente = Optional<ICliente>.Empty();
-
-        //while (!cliente.HasValue())
-        //{
-        //    cliente = PreguntarSiEsCliente(pasteleria);
-        //}
     }
 }

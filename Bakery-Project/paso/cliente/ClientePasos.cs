@@ -2,11 +2,11 @@
 
 namespace Application.paso.cliente;
 
-public class EliminarClientePasos : IAppPasos<ICliente>
+public class ClientePasos : IAppPasos<ICliente>
 {
     private IAppPaso<ICliente> _primerPaso;
 
-    public EliminarClientePasos(IAppPaso<ICliente> primerPaso)
+    public ClientePasos(IAppPaso<ICliente> primerPaso)
     {
         this._primerPaso = primerPaso;
     }

@@ -35,11 +35,24 @@ public class ServicioClientes : IServicioClientes
         return this._repositorioCliente.ObtenerPorId(id);
     }
     
+
     public void MostrarTodos()
     {
-        this._repositorioCliente.ObtenerTodos().ForEach(cliente => Console.WriteLine("Cliente: " + cliente.Nombre));
-    }
+        Console.WriteLine("     ");
+        Console.WriteLine("     ");
+        Console.WriteLine("***************************************************");
 
+        Console.WriteLine("     ");
+        Console.WriteLine("Clientes Totales: " + this._repositorioCliente.ObtenerTodos().Count);
+        Console.WriteLine("     ");
+
+        this._repositorioCliente.ObtenerTodos()
+            .ForEach(cliente => Console.WriteLine("Id: " + cliente.Dni + " | Nombre: " + cliente.Nombre + " | Apellido: " + cliente.Apellido));
+        Console.WriteLine("     ");
+        Console.WriteLine("***************************************************");
+        Console.WriteLine("     ");
+    }
+    
     public List<ICliente> ObtenerTodos()
     {
         return this._repositorioCliente.ObtenerTodos();

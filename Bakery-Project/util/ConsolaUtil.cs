@@ -10,7 +10,7 @@ public class ConsolaUtil
         
         if (typeof(T) == typeof(int))
         {
-            return (T) (object) Int64.Parse(lineaDeConsola);
+            return (T) (object) System.Int32.Parse(lineaDeConsola);
         } 
         else if (typeof(T) == typeof(double))
         {
