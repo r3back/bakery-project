@@ -32,7 +32,7 @@ public class PasoSeleccionarPedido : IAppPaso<IPedido>
             
             return this.Ejecutar(servicio);
         } else {
-            return this._siguiente.Ejecutar(servicio);
+            return this._siguiente.Ejecutar(existe.GetValue());
         }
     }
 }
