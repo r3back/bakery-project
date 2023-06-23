@@ -7,8 +7,7 @@ public class PasoAbonarPedido : IAppPaso<IPedido>
 {
     public IPedido Ejecutar(IPedido servicio)
     {
-
-        Console.WriteLine("Pedido " + servicio.Saldo);
+        
         if (servicio.Saldo >= 1)
         {
             Console.WriteLine("El saldo restante es " + servicio.Saldo);
