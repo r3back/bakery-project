@@ -2,7 +2,7 @@
 
 public class Pedido : IPedido
 {
-    private static int PEDIDO_CONTADOR = 0;
+    private static int _pedidoContador = 0;
     private List<IServicioComprado> _servicios;
     private DateTime _fechaDelEvento;
     private string _dniCliente;
@@ -12,23 +12,10 @@ public class Pedido : IPedido
 
     public Pedido()
     {
-        this._idPedido = PEDIDO_CONTADOR;
+        this._idPedido = _pedidoContador;
         this._servicios = new List<IServicioComprado>();
         
-        PEDIDO_CONTADOR++;
-    }
-    
-    public Pedido(DateTime fechaDelEvento, string dniCliente, double gastoTotal,
-                  double saldo)
-    {
-        _servicios = new List<IServicioComprado>();
-        _fechaDelEvento = fechaDelEvento;
-        _idPedido = PEDIDO_CONTADOR;
-        _gastoTotal = gastoTotal;
-        _dniCliente = dniCliente;
-        _saldo = saldo;
-
-        PEDIDO_CONTADOR++;
+        _pedidoContador++;
     }
 
     public List<IServicioComprado> Servicios

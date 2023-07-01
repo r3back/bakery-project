@@ -1,7 +1,7 @@
 ﻿using Application.util;
 namespace Application.repositorio;
 
-public interface IRepositorioComun<T, TE>
+public interface IRepositorio<T, TE>
 {
     public List<T> ObtenerTodos();
 

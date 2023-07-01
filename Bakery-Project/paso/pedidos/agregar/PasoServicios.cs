@@ -17,7 +17,7 @@ public class PasoServicios : IAppPaso<IPedido>
 
     public IPedido Ejecutar(IPedido pedido)
     {
-        List<IServicio> servicios = Application.ObtenerInstancia().ObtenerServicioServicios().ObtenerTodos();
+        List<IPrestacion> servicios = Application.ObtenerInstancia().ObtenerServicioPrestaciones().ObtenerTodos();
 
         MostrarServicios(servicios);
 
@@ -37,7 +37,7 @@ public class PasoServicios : IAppPaso<IPedido>
         }
         else
         {
-            IServicio? servicio = ObtenerServicio(id);
+            IPrestacion? servicio = ObtenerServicio(id);
             
             if (servicio != null)
             {
@@ -52,14 +52,14 @@ public class PasoServicios : IAppPaso<IPedido>
         return this.Ejecutar(pedido);
     }
 
-    private IServicio? ObtenerServicio(string idStr)
+    private IPrestacion? ObtenerServicio(string idStr)
     {
         try
         {
             int id = int.Parse(idStr);
         
-            Optional<IServicio> existe = Application.ObtenerInstancia()
-                .ObtenerServicioServicios()
+            Optional<IPrestacion> existe = Application.ObtenerInstancia()
+                .ObtenerServicioPrestaciones()
                 .ObtenerPorId(id);
 
             return existe.GetValue();
@@ -70,7 +70,7 @@ public class PasoServicios : IAppPaso<IPedido>
         }
     }
 
-    private void MostrarServicios(List<IServicio> servicios)
+    private void MostrarServicios(List<IPrestacion> servicios)
     {
         Console.WriteLine("***************************************************");
 

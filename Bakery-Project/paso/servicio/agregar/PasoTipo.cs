@@ -3,24 +3,24 @@ using Application.util;
 
 namespace Application.paso.servicio.agregar;
 
-public class PasoTipo : IAppPaso<IServicio>
+public class PasoTipo : IAppPaso<IPrestacion>
 {
-    private IAppPaso<IServicio> _siguiente;
+    private IAppPaso<IPrestacion> _siguiente;
 
-    public PasoTipo(IAppPaso<IServicio> siguiente)
+    public PasoTipo(IAppPaso<IPrestacion> siguiente)
     {
         this._siguiente = siguiente;
     }
     
-    public IServicio Ejecutar(IServicio servicio)
+    public IPrestacion Ejecutar(IPrestacion prestacion)
     {
         string tipo = ConsolaUtil.GetConsoleLine<string>("Ingresa el tipo del servicio: ").ToLower();
 
-        servicio.TipoServicio = tipo;
+        prestacion.TipoServicio = tipo;
 
-        return Optional<IAppPaso<IServicio>>
+        return Optional<IAppPaso<IPrestacion>>
             .Of(_siguiente)
-            .Map(paso => paso.Ejecutar(servicio))
-            .OrElse(servicio);
+            .Map(paso => paso.Ejecutar(prestacion))
+            .OrElse(prestacion);
     }
 }

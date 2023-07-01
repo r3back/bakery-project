@@ -2,21 +2,21 @@
 
 namespace Application.paso.servicio;
 
-public class ServicioPasos : IAppPasos<IServicio>
+public class ServicioPasos : IAppPasos<IPrestacion>
 {
-    private IAppPaso<IServicio> step;
+    private IAppPaso<IPrestacion> step;
 
-    public ServicioPasos(IAppPaso<IServicio> step)
+    public ServicioPasos(IAppPaso<IPrestacion> step)
     {
         this.step = step;
     }
     
-    public IServicio Ejecutar(IServicio dato)
+    public IPrestacion Ejecutar(IPrestacion dato)
     {
         return step.Ejecutar(dato);
     }
 
-    public void AgregarPasos(List<IAppPaso<IServicio>> pasos)
+    public void AgregarPasos(List<IAppPaso<IPrestacion>> pasos)
     {
         
     }

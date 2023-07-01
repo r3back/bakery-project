@@ -4,14 +4,14 @@ using Application.util;
 
 namespace Application.paso.servicio.listar;
 
-public class PasoListar : IAppPaso<IServicio>
+public class PasoListar : IAppPaso<IPrestacion>
 {
-    public IServicio Ejecutar(IServicio servicio)
+    public IPrestacion Ejecutar(IPrestacion prestacion)
     {
         IServicioPasteleria pasteleria = Application.ObtenerInstancia();
         
         pasteleria
-            .ObtenerServicioServicios()
+            .ObtenerServicioPrestaciones()
             .MostrarTodos();
 
         string atras = "";
@@ -28,8 +28,8 @@ public class PasoListar : IAppPaso<IServicio>
             }
         }
         
-        ServicioUtil.MostrarMenuServicios();
+        PrestacionUtil.MostrarMenuServicios();
         
-        return servicio;
+        return prestacion;
     }
 }

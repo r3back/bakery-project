@@ -3,30 +3,30 @@ using Application.util;
 
 namespace Application.paso.servicio.agregar;
 
-public class PasoPrecio : IAppPaso<IServicio>
+public class PasoPrecio : IAppPaso<IPrestacion>
 {
-    private IAppPaso<IServicio>? _siguiente;
+    private IAppPaso<IPrestacion>? _siguiente;
 
-    public PasoPrecio(IAppPaso<IServicio>? siguiente)
+    public PasoPrecio(IAppPaso<IPrestacion>? siguiente)
     {
         this._siguiente = siguiente;
     }
     
-    public IServicio Ejecutar(IServicio servicio)
+    public IPrestacion Ejecutar(IPrestacion prestacion)
     {
         double tipo = ConsolaUtil.GetConsoleLine<double>("Ingresa el precio del servicio: ");
 
-        servicio.Precio = tipo;
+        prestacion.Precio = tipo;
 
         Application.ObtenerInstancia()
-            .ObtenerServicioServicios()
-            .Agregar(servicio);
+            .ObtenerServicioPrestaciones()
+            .Agregar(prestacion);
         
         Console.WriteLine("Servicio agregado correctamente!");
 
-        return Optional<IAppPaso<IServicio>>
+        return Optional<IAppPaso<IPrestacion>>
             .Of(_siguiente)
-            .Map(paso => paso.Ejecutar(servicio))
-            .OrElse(servicio);
+            .Map(paso => paso.Ejecutar(prestacion))
+            .OrElse(prestacion);
     }
 }

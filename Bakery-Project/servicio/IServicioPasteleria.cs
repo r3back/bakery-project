@@ -1,10 +1,12 @@
-﻿namespace Application.servicio;
+﻿using Application.modelo;
+
+namespace Application.servicio;
 
 public interface IServicioPasteleria
 {
-    IServicioClientes ObtenerServicioClientes();
+    IServicio<ICliente, string> ObtenerServicioClientes();
     
-    IServicioPedidos ObtenerServicioPedidos();
+    IServicio<IPedido, int> ObtenerServicioPedidos();
     
-    IServicioServicios ObtenerServicioServicios();
+    IServicio<IPrestacion, int> ObtenerServicioPrestaciones();
 }

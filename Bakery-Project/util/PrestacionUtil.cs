@@ -8,7 +8,7 @@ using Application.paso.servicio.listar;
 
 namespace Application.util;
 
-public class ServicioUtil
+public class PrestacionUtil
 {
     public static void MostrarMenuServicios()
     {
@@ -37,9 +37,9 @@ public class ServicioUtil
 
     private static void MostrarServicios()
     {
-        IAppPaso<IServicio> pasoListar = new PasoListar();
+        IAppPaso<IPrestacion> pasoListar = new PasoListar();
 
-        IAppPasos<IServicio> pasos = new ServicioPasos(pasoListar);
+        IAppPasos<IPrestacion> pasos = new ServicioPasos(pasoListar);
 
         pasos.Ejecutar(null);
         
@@ -48,22 +48,22 @@ public class ServicioUtil
     
     public static void AgregarServicio()
     {
-        IAppPaso<IServicio> pasoPrecio = new PasoPrecio(null);
-        IAppPaso<IServicio> pasoTipo = new PasoTipo(pasoPrecio);
-        IAppPaso<IServicio> pasoNombre = new PasoNombre(pasoTipo);
+        IAppPaso<IPrestacion> pasoPrecio = new PasoPrecio(null);
+        IAppPaso<IPrestacion> pasoTipo = new PasoTipo(pasoPrecio);
+        IAppPaso<IPrestacion> pasoNombre = new PasoNombre(pasoTipo);
         
-        IAppPasos<IServicio> pasos = new ServicioPasos(pasoNombre);
+        IAppPasos<IPrestacion> pasos = new ServicioPasos(pasoNombre);
 
-        pasos.Ejecutar(new Servicio());
+        pasos.Ejecutar(new Prestacion());
         
         MostrarMenuServicios();
     }
     
     private static void EliminarServicio()
     {
-        IAppPaso<IServicio> pasoEliminar = new PasoEliminar();
+        IAppPaso<IPrestacion> pasoEliminar = new PasoEliminar();
 
-        IAppPasos<IServicio> pasos = new ServicioPasos(pasoEliminar);
+        IAppPasos<IPrestacion> pasos = new ServicioPasos(pasoEliminar);
 
         pasos.Ejecutar(null);
         

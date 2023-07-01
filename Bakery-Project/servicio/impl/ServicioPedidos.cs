@@ -4,35 +4,35 @@ using Application.util;
 
 namespace Application.servicio.impl;
 
-public class ServicioPedidos : IServicioPedidos
+public class ServicioPedidos : IServicio<IPedido, int>
 {
-    private IRepositorioPedido _repositorioPedidos;
+    private IRepositorio<IPedido, int> _repositorio;
 
-    public ServicioPedidos(IRepositorioPedido repositorioPedidos)
+    public ServicioPedidos(IRepositorio<IPedido, int> repositorio)
     {
-        _repositorioPedidos = repositorioPedidos;
+        _repositorio = repositorio;
     }
     
     public IPedido Agregar(IPedido pedido)
     {
-        this._repositorioPedidos.Agregar(pedido);
+        this._repositorio.Agregar(pedido);
 
         return pedido;
     }
 
     public void Eliminar(IPedido pedido)
     {
-        this._repositorioPedidos.Eliminar(pedido);
+        this._repositorio.Eliminar(pedido);
     }
 
     public void EliminarPorId(int id)
     {
-        this._repositorioPedidos.EliminarPorId(id);
+        this._repositorio.EliminarPorId(id);
     }
 
     public Optional<IPedido> ObtenerPorId(int id)
     {
-        return this._repositorioPedidos.ObtenerPorId(id);
+        return this._repositorio.ObtenerPorId(id);
     }
 
     public void MostrarTodos()
@@ -42,10 +42,10 @@ public class ServicioPedidos : IServicioPedidos
         Console.WriteLine("***************************************************");
 
         Console.WriteLine("     ");
-        Console.WriteLine("Pedidos Totales: " + this._repositorioPedidos.ObtenerTodos().Count);
+        Console.WriteLine("Pedidos Totales: " + this._repositorio.ObtenerTodos().Count);
         Console.WriteLine("     ");
 
-        this._repositorioPedidos.ObtenerTodos()
+        this._repositorio.ObtenerTodos()
             .ForEach(servicio => Console.WriteLine("Id: " + servicio.IdPedido + " | Cliente: " + servicio.DniCliente + " | Saldo: " + servicio.Saldo + " | Fecha: " + servicio.FechaDelEvento));
         Console.WriteLine("     ");
         Console.WriteLine("***************************************************");
@@ -54,6 +54,6 @@ public class ServicioPedidos : IServicioPedidos
     
     public List<IPedido> ObtenerTodos()
     {
-        return this._repositorioPedidos.ObtenerTodos();
+        return this._repositorio.ObtenerTodos();
     }
 }

@@ -1,29 +1,32 @@
-﻿namespace Application.servicio.impl;
+﻿using Application.modelo;
+
+namespace Application.servicio.impl;
 
 public class ServicioPasteleria :  IServicioPasteleria
 {
-    private IServicioServicios _servicioServicios;
-    private IServicioClientes _servicioClientes;
-    private IServicioPedidos _servicioPedidos;
+    private IServicio<IPrestacion, int> _servicioPrestaciones;
+    private IServicio<ICliente, string> _servicioClientes;
+    private IServicio<IPedido, int> _servicioPedidos;
 
-    public ServicioPasteleria(IServicioClientes servicioClientes, IServicioPedidos servicioPedidos, IServicioServicios servicioServicios)
+    public ServicioPasteleria(IServicio<ICliente, string> servicioClientes, IServicio<IPedido, int> servicioPedidos, 
+                              IServicio<IPrestacion, int> servicioPrestaciones)
     {
-        _servicioServicios = servicioServicios;
+        _servicioPrestaciones = servicioPrestaciones;
         _servicioClientes = servicioClientes;
         _servicioPedidos = servicioPedidos;
     }
     
-    public IServicioServicios ObtenerServicioServicios()
+    public IServicio<IPrestacion, int> ObtenerServicioPrestaciones()
     {
-        return _servicioServicios;
+        return _servicioPrestaciones;
     }
     
-    public IServicioClientes ObtenerServicioClientes()
+    public IServicio<ICliente, string> ObtenerServicioClientes()
     {
         return _servicioClientes;
     }
 
-    public IServicioPedidos ObtenerServicioPedidos()
+    public IServicio<IPedido, int> ObtenerServicioPedidos()
     {
         return _servicioPedidos;
     }

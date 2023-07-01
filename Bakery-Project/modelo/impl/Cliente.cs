@@ -8,20 +8,6 @@ public class Cliente : ICliente
     private string _nombre;
     private string _dni;
 
-    public Cliente()
-    {
-        
-    }
-
-    public Cliente(string nombre, string apellido, string dni, string telefono, string direccion)
-    {
-        this._direccion = direccion;
-        this._telefono = telefono;
-        this._apellido = apellido;
-        this._nombre = nombre;
-        this._dni = dni;
-    }
-
     public string Direccion
     {
         get => _direccion;

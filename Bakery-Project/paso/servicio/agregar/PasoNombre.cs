@@ -3,25 +3,25 @@ using Application.util;
 
 namespace Application.paso.servicio.agregar;
 
-public class PasoNombre : IAppPaso<IServicio>
+public class PasoNombre : IAppPaso<IPrestacion>
 {
-    private IAppPaso<IServicio>? _siguiente;
+    private IAppPaso<IPrestacion>? _siguiente;
 
-    public PasoNombre(IAppPaso<IServicio>? siguiente)
+    public PasoNombre(IAppPaso<IPrestacion>? siguiente)
     {
         this._siguiente = siguiente;
     }
     
-    public IServicio Ejecutar(IServicio servicio)
+    public IPrestacion Ejecutar(IPrestacion prestacion)
     {
         string nombre = ConsolaUtil.GetConsoleLine<string>("Ingresa el nombre del servicio: ").ToLower();
 
-        servicio.NombreServicio = nombre;
+        prestacion.NombreServicio = nombre;
 
-        return Optional<IAppPaso<IServicio>>
+        return Optional<IAppPaso<IPrestacion>>
             .Of(_siguiente)
-            .Map(paso => paso.Ejecutar(servicio))
-            .OrElse(servicio);
+            .Map(paso => paso.Ejecutar(prestacion))
+            .OrElse(prestacion);
         
     }
 }

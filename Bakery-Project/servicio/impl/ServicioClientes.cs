@@ -4,35 +4,35 @@ using Application.util;
 
 namespace Application.servicio.impl;
 
-public class ServicioClientes : IServicioClientes
+public class ServicioClientes : IServicio<ICliente, string>
 {
-    private IRepositorioCliente _repositorioCliente;
+    private IRepositorio<ICliente, string> _repositorio;
 
-    public ServicioClientes(IRepositorioCliente repositorioCliente)
+    public ServicioClientes(IRepositorio<ICliente, string> repositorio)
     {
-        _repositorioCliente = repositorioCliente;
+        this._repositorio = repositorio;
     }
 
     public ICliente Agregar(ICliente cliente)
     {
-        this._repositorioCliente.Agregar(cliente);
+        this._repositorio.Agregar(cliente);
         
         return cliente;
     }
 
     public void Eliminar(ICliente cliente)
     {
-        this._repositorioCliente.Eliminar(cliente);
+        this._repositorio.Eliminar(cliente);
     }
 
     public void EliminarPorId(string id)
     {
-        this._repositorioCliente.EliminarPorId(id);
+        this._repositorio.EliminarPorId(id);
     }
 
     public Optional<ICliente> ObtenerPorId(string id)
     {
-        return this._repositorioCliente.ObtenerPorId(id);
+        return this._repositorio.ObtenerPorId(id);
     }
     
 
@@ -43,10 +43,10 @@ public class ServicioClientes : IServicioClientes
         Console.WriteLine("***************************************************");
 
         Console.WriteLine("     ");
-        Console.WriteLine("Clientes Totales: " + this._repositorioCliente.ObtenerTodos().Count);
+        Console.WriteLine("Clientes Totales: " + this._repositorio.ObtenerTodos().Count);
         Console.WriteLine("     ");
 
-        this._repositorioCliente.ObtenerTodos()
+        this._repositorio.ObtenerTodos()
             .ForEach(cliente => Console.WriteLine("Id: " + cliente.Dni + " | Nombre: " + cliente.Nombre + " | Apellido: " + cliente.Apellido));
         Console.WriteLine("     ");
         Console.WriteLine("***************************************************");
@@ -55,6 +55,6 @@ public class ServicioClientes : IServicioClientes
     
     public List<ICliente> ObtenerTodos()
     {
-        return this._repositorioCliente.ObtenerTodos();
+        return this._repositorio.ObtenerTodos();
     }
 }

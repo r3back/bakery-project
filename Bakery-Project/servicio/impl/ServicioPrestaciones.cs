@@ -4,25 +4,25 @@ using Application.util;
 
 namespace Application.servicio.impl;
 
-public class ServicioServicios : IServicioServicios
+public class ServicioPrestaciones : IServicio<IPrestacion, int>
 {
-    private IRepositorioServicio _repositorio;
+    private IRepositorio<IPrestacion, int> _repositorio;
 
-    public ServicioServicios(IRepositorioServicio repositorio)
+    public ServicioPrestaciones(IRepositorio<IPrestacion, int> repositorio)
     {
         _repositorio = repositorio;
     }
     
-    public IServicio Agregar(IServicio servicio)
+    public IPrestacion Agregar(IPrestacion prestacion)
     {
-        this._repositorio.Agregar(servicio);
+        this._repositorio.Agregar(prestacion);
 
-        return servicio;
+        return prestacion;
     }
 
-    public void Eliminar(IServicio servicio)
+    public void Eliminar(IPrestacion prestacion)
     {
-        this._repositorio.Eliminar(servicio);
+        this._repositorio.Eliminar(prestacion);
     }
 
     public void EliminarPorId(int id)
@@ -30,7 +30,7 @@ public class ServicioServicios : IServicioServicios
         this._repositorio.EliminarPorId(id);
     }
 
-    public Optional<IServicio> ObtenerPorId(int id)
+    public Optional<IPrestacion> ObtenerPorId(int id)
     {
         return this._repositorio.ObtenerPorId(id);
     }
@@ -51,7 +51,7 @@ public class ServicioServicios : IServicioServicios
         Console.WriteLine("     ");
     }
     
-    public List<IServicio> ObtenerTodos()
+    public List<IPrestacion> ObtenerTodos()
     {
         return this._repositorio.ObtenerTodos();
     }

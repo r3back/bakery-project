@@ -1,6 +1,6 @@
 ﻿namespace Application.modelo.impl;
 
-public class Servicio : IServicio
+public class Prestacion : IPrestacion
 {
     private static int _generadorId = 0;
     private string _nombreServicio;
@@ -8,20 +8,13 @@ public class Servicio : IServicio
     private double _precio;
     private int _id;
 
-    public Servicio()
+    public Prestacion()
     {
         this._id = _generadorId;
 
         _generadorId++;
     }
     
-    public Servicio(string nombreServicio, string tipoServicio, double precio)
-    {
-        _nombreServicio = nombreServicio;
-        _tipoServicio = tipoServicio;
-        _precio = precio;
-    }
-
     public string NombreServicio
     {
         get => _nombreServicio;

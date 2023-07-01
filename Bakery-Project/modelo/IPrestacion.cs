@@ -1,6 +1,6 @@
 ﻿namespace Application.modelo;
 
-public interface IServicio
+public interface IPrestacion
 {
     public int Id { get; set; }
     public string NombreServicio { get; set; }

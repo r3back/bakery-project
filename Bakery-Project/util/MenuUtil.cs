@@ -6,12 +6,20 @@ public class MenuUtil
     {
         MensajesUtil.EnviarMensajeBienvenida();
         
-        string opcionMenu = ConsolaUtil.GetConsoleLine<string>("Seleccione una opcion: ").ToLower();
+        string opcionMenu = ConsolaUtil.GetConsoleLine<string>("Seleccione una opcion: ");
+
+        if (opcionMenu == null)
+        {
+            MenuPrincipal();
+            return;
+        }
+
+        opcionMenu = opcionMenu.ToLower();
         
         switch (opcionMenu)
         {
             case "1":
-                ServicioUtil.MostrarMenuServicios();
+                PrestacionUtil.MostrarMenuServicios();
                 break;
             case "2":
                 PedidoUtil.MostrarMenuPedidos();

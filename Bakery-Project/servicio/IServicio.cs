@@ -2,7 +2,7 @@
 
 namespace Application.servicio;
 
-public interface IServicioComun<T, TE>
+public interface IServicio<T, TE>
 {
     public T Agregar(T valor);
     

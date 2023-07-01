@@ -1,9 +1,17 @@
-﻿version: "3"
+﻿version: "3.8"
 
 services:
-  dotnet:
+  dotnet-build:
+    build:
+      context: .
+    volumes:
+      - .:/code:ro
+    command: dotnet build --project /temporal/project/Bakery-Project
+  dotnet-test:
     build:
       context: .
     volumes:
       - .:/code:ro
     command: dotnet run --project /temporal/project/Bakery-Project
+    stdin_open: true
+    tty: true

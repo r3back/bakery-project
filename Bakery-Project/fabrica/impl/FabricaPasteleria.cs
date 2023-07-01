@@ -1,4 +1,5 @@
-﻿using Application.repositorio;
+﻿using Application.modelo;
+using Application.repositorio;
 using Application.repositorio.impl;
 using Application.servicio;
 using Application.servicio.impl;
@@ -7,33 +8,35 @@ namespace Application.fabrica.impl;
 
 public class FabricaPasteleria : IFabricaPasteleria
 {
+    
+
     public IServicioPasteleria CrearServicioPasteleria()
     {
-        IServicioPedidos pedidosService = GetPedidosService();
-        IServicioClientes clientesService = GetClientesService();
-        IServicioServicios servicioServicios = GetServicioServicios();
+        IServicio<IPedido, int> pedidosService = GetPedidosService();
+        IServicio<ICliente, string> clientesService = GetClientesService();
+        IServicio<IPrestacion, int> prestacionesService = GetServicioPrestaciones();
 
-        return new ServicioPasteleria(clientesService, pedidosService, servicioServicios);
+        return new ServicioPasteleria(clientesService, pedidosService, prestacionesService);
     }
 
-    private IServicioPedidos GetPedidosService()
+    private IServicio<IPedido, int> GetPedidosService()
     {
-        IRepositorioPedido repositorioPedido = new RepositorioPedidoImpl();
+        IRepositorio<IPedido, int> repositorioPedido = new RepositorioPedido();
 
         return new ServicioPedidos(repositorioPedido);
     }
 
-    private IServicioClientes GetClientesService()
+    private IServicio<ICliente, string> GetClientesService()
     {
-        IRepositorioCliente repositorioCliente = new RepositorioClienteImpl();
+        IRepositorio<ICliente, string> repositorioCliente = new RepositorioCliente();
 
         return new ServicioClientes(repositorioCliente);
     }
     
-    private IServicioServicios GetServicioServicios()
+    private IServicio<IPrestacion, int> GetServicioPrestaciones()
     {
-        IRepositorioServicio repositorioServicio = new RepositorioServicioImpl();
+        IRepositorio<IPrestacion, int> repositorioPrestaciones = new RepositorioPrestacion();
 
-        return new ServicioServicios(repositorioServicio);
+        return new ServicioPrestaciones(repositorioPrestaciones);
     }
 }

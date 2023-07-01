@@ -3,7 +3,7 @@ using Application.util;
 
 namespace Application.repositorio.impl;
 
-public class RepositorioClienteImpl : IRepositorioCliente
+public class RepositorioCliente : IRepositorio<ICliente, string>
 {
     private List<ICliente> _clientes = new List<ICliente>();
 

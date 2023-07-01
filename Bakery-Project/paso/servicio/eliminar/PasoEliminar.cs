@@ -3,23 +3,23 @@ using Application.util;
 
 namespace Application.paso.servicio.eliminar;
 
-public class PasoEliminar : IAppPaso<IServicio>
+public class PasoEliminar : IAppPaso<IPrestacion>
 {
 
-    public IServicio Ejecutar(IServicio servicio)
+    public IPrestacion Ejecutar(IPrestacion prestacion)
     {
         int nombre = ConsolaUtil.GetConsoleLine<int>("Ingresa el id del servicio: ");
 
-        Optional<IServicio> existe = Application.ObtenerInstancia()
-            .ObtenerServicioServicios()
+        Optional<IPrestacion> existe = Application.ObtenerInstancia()
+            .ObtenerServicioPrestaciones()
             .ObtenerPorId(nombre);
 
         if (!existe.HasValue()) {
             Console.WriteLine("[ERROR] No existe un servicio con ese id!");
             
-            return this.Ejecutar(servicio);
+            return this.Ejecutar(prestacion);
         } else {
-            Application.ObtenerInstancia().ObtenerServicioServicios().Eliminar(existe.GetValue());
+            Application.ObtenerInstancia().ObtenerServicioPrestaciones().Eliminar(existe.GetValue());
             
             Console.WriteLine("Servicio eliminado correctamente!");
 

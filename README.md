@@ -30,7 +30,7 @@ $ dotnet run --project Bakery-Project
 $ git clone https://github.com/r3back/bakery-project.git
 
 # execute docker compose
-$ docker compose run dotnet
+$ docker-compose run --rm dotnet-test
 ```
 
 

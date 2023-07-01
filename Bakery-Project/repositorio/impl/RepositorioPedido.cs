@@ -3,7 +3,7 @@ using Application.util;
 
 namespace Application.repositorio.impl;
 
-public class RepositorioPedidoImpl : IRepositorioPedido
+public class RepositorioPedido : IRepositorio<IPedido, int>
 {
     private List<IPedido> _pedidos = new List<IPedido>();
 
