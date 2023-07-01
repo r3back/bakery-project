@@ -33,6 +33,10 @@ $ git clone https://github.com/r3back/bakery-project.git
 $ docker-compose run --rm dotnet-test
 ```
 
+### UML Diagram
+To see full UML-Diagram please check the image [`/uml-diagram/uml.png`](https://github.com/r3back/bakery-project/tree/main/Bakery-Project/uml.png)
+
+
 
 ## License
 This App is licensed under The Unlicense. Please see [`LICENSE.txt`](https://github.com/r3back/bakery-project/blob/main/LICENSE) for more info.
