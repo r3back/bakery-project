@@ -34,8 +34,7 @@ $ docker-compose run --rm dotnet-test
 ```
 
 ### UML Diagram
-To see full UML-Diagram please check the image [`/uml-diagram/uml.png`](https://github.com/r3back/bakery-project/tree/main/Bakery-Project/uml.png)
-
+To see full UML-Diagram please check the image [`/uml-diagram/uml.png`](https://github.com/r3back/bakery-project/blob/main/Bakery-Project/uml-diagram/uml.png)
 
 
 ## License
